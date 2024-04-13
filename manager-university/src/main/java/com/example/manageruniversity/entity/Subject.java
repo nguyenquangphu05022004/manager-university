@@ -1,12 +1,18 @@
 package com.example.manageruniversity.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "subjects")
+@Getter
+@Data
 public class Subject extends Base{
     private String subjectName;
     private String subjectCode;
@@ -19,4 +25,6 @@ public class Subject extends Base{
     @ManyToOne
     @JoinColumn(name = "major_Id")
     private Major major;
+    @ManyToMany(mappedBy = "subjects")
+    private Set<TestSchedule> testSchedules = new HashSet<>();
 }

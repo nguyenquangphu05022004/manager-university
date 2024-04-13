@@ -1,9 +1,12 @@
 package com.example.manageruniversity.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
 @Table(name = "registers")
+@Getter
+@Deprecated
 public class Register extends Base{
     @ManyToOne
     @JoinColumn(name = "student_dd")
@@ -13,5 +16,8 @@ public class Register extends Base{
     private SubjectGroup subjectGroup;
     @OneToOne(mappedBy = "register")
     private Grade grade;
+    @ManyToOne
+    @JoinColumn(name = "season_id")
+    private Season season;
     private boolean status;
 }

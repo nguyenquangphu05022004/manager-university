@@ -1,9 +1,8 @@
 package com.example.manageruniversity.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
@@ -11,9 +10,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "students")
+@Getter
+@Data
 public class Student extends Person{
-    @ManyToMany(mappedBy = "students")
-    private List<Season> seasons = new ArrayList<>();
     @OneToMany(mappedBy = "student")
     private List<Register> registers = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "major_id")
+    private Major major;
 }

@@ -3,6 +3,8 @@ package com.example.manageruniversity.entity;
 import jakarta.persistence.ExcludeSuperclassListeners;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import lombok.Data;
+import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -13,6 +15,8 @@ import java.time.LocalDateTime;
 
 @MappedSuperclass
 @ExcludeSuperclassListeners
+@Getter
+@Data
 public abstract class Base {
     @Id
     private Long id;

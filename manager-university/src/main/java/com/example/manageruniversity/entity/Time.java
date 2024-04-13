@@ -1,15 +1,16 @@
 package com.example.manageruniversity.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
 @Table(name = "times")
+@Data
+@Getter
 public class Time extends Base{
     private LocalTime startTime;
     private LocalTime endTime;
