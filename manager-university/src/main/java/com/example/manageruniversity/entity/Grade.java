@@ -15,4 +15,5 @@ public class Grade extends Base{
     @OneToOne
     @JoinColumn(name = "register_id")
     private Register register;
+
 }

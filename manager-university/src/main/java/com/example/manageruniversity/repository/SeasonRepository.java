@@ -1,4 +1,7 @@
 package com.example.manageruniversity.repository;
 
-public interface SeasonRepository {
+import com.example.manageruniversity.entity.Season;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SeasonRepository extends JpaRepository<Season, Long> {
 }

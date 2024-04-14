@@ -16,10 +16,13 @@ public class SubjectGroup extends Base {
     @JoinColumn(name = "subject_id")
     private Subject subject;
     private Integer numberOfStudent;
+
     @OneToMany(mappedBy = "subjectGroup")
     private List<Time> times = new ArrayList<>();
+
     @OneToMany(mappedBy = "subjectGroup")
     private List<Register> registers = new ArrayList<>();
+
     @ManyToMany(mappedBy = "subjectGroups")
     private List<Teacher> teachers = new ArrayList<>();
 }

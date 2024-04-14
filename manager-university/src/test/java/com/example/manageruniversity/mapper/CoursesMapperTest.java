@@ -25,6 +25,7 @@ class CoursesMapperTest {
         assertThat(coursesDTO.getCode()).isEqualTo(courses.getCode());
         assertThat(coursesDTO.getName()).isEqualTo(courses.getName());
         assertThat(coursesDTO.getId()).isEqualTo(courses.getId());
+
     }
 
     @Test
@@ -37,5 +38,15 @@ class CoursesMapperTest {
         assertThat(courses.getName()).isEqualTo(coursesDTO.getName());
         assertThat(courses.getCode()).isEqualTo(coursesDTO.getCode());
         assertThat(courses.getSeasons().size()).isEqualTo(0);
+
+        Courses courses1 = new Courses();
+        courses1.setCode("testCode");
+        courses1.setName("testName");
+
+//        Courses courses2 = CoursesMapper.mapper.coursesDTOToEntity(courses1, coursesDTO);
+
+//        assertThat(courses2.getName()).isEqualTo(coursesDTO.getName());
+
+
     }
 }

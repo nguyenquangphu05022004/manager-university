@@ -1,4 +1,10 @@
 package com.example.manageruniversity.dto;
 
-public class SemesterDTO {
+import lombok.Data;
+import lombok.Getter;
+
+@Getter
+@Data
+public class SemesterDTO extends BaseDTO {
+    private String semesterName;
 }

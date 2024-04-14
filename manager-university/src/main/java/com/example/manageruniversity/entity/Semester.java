@@ -14,6 +14,7 @@ import java.util.List;
 @Data
 @Setter
 public class Semester extends Base{
+    private String semesterName;
     @OneToMany(mappedBy = "semester")
     private List<Season> seasons = new ArrayList<>();
 }
