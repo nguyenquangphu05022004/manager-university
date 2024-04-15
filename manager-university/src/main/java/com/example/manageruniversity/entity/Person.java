@@ -13,6 +13,8 @@ import java.util.Date;
 public abstract class Person  extends Base{
     private String fullName;
     private String address;
+    private String phoneNumber;
+    private String email;
     private String username;
     private String password;
     private Date dateOfBirth;

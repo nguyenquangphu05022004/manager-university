@@ -1,4 +1,11 @@
 package com.example.manageruniversity.dto;
 
-public class TuitionDTO {
+import lombok.Data;
+import lombok.Getter;
+
+@Getter
+@Data
+public class TuitionDTO extends BaseDTO{
+    private Integer moneyPerCredit;
+
 }

@@ -12,6 +12,7 @@ import java.util.List;
 @Getter
 @Data
 public class SubjectGroup extends Base {
+    private String groupName;
     @ManyToOne
     @JoinColumn(name = "subject_id")
     private Subject subject;
@@ -23,6 +24,4 @@ public class SubjectGroup extends Base {
     @OneToMany(mappedBy = "subjectGroup")
     private List<Register> registers = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "subjectGroups")
-    private List<Teacher> teachers = new ArrayList<>();
 }

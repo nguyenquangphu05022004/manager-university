@@ -18,4 +18,7 @@ public class Student extends Person{
     @ManyToOne
     @JoinColumn(name = "major_id")
     private Major major;
+    @ManyToOne
+    @JoinColumn(name = "courses_id")
+    private Courses courses;
 }

@@ -13,11 +13,11 @@ import java.util.List;
 @Data
 public class Season extends Base{
     @ManyToOne
-    @JoinTable(name = "semester_id")
+    @JoinColumn(name = "season_semester")
     private Semester semester;
 
     @ManyToOne
-    @JoinTable(name = "school_year_Id")
+    @JoinColumn(name = "school_year_Id")
     private SchoolYear schoolYear;
 
     @ManyToOne

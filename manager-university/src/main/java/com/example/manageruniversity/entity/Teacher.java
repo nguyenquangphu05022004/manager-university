@@ -12,7 +12,11 @@ import java.util.List;
 @Getter
 @Data
 public class Teacher extends Person{
+    @ManyToOne
+    @JoinColumn(name = "major_id")
+    private Major major;
     @ManyToMany
-    @JoinTable(name = "teacher_subject_groups")
-    private List<SubjectGroup> subjectGroups = new ArrayList<>();
+    @JoinTable(name = "teacher_subjects", joinColumns = @JoinColumn(name = "teacher_id"),
+    inverseJoinColumns = @JoinColumn(name = "subject_id"))
+    private List<Subject> subjects = new ArrayList<>();
 }

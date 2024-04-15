@@ -1,20 +1,23 @@
 package com.example.manageruniversity.dto;
 
-import com.example.manageruniversity.entity.Major;
-import com.example.manageruniversity.entity.TestSchedule;
-import com.example.manageruniversity.entity.Tuition;
+import lombok.Data;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-public class SubjectDTO {
+@Getter
+@Data
+public class SubjectDTO extends BaseDTO{
     private String subjectName;
     private String subjectCode;
     private Integer credit;
-    private Tuition tuition;
-    private List<SubjectGroupDTO> subjectGroups = new ArrayList<>();
-    private Major major;
-    private Set<TestSchedule> testSchedules = new HashSet<>();
+    private TuitionDTO tuitionDTO;
+    private List<SubjectGroupDTO> subjectGroupDTOS = new ArrayList<>();
+    private Set<TestScheduleDTO> testScheduleDTOS = new HashSet<>();
+
+    public Integer priceOfSubject() {
+        return tuitionDTO.getMoneyPerCredit() * credit;
+    }
 }

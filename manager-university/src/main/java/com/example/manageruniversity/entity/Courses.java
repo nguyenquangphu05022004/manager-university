@@ -19,4 +19,6 @@ public class Courses extends Base{
     private String code;
     @OneToMany(mappedBy = "courses")
     private List<Season> seasons = new ArrayList<>();
+    @OneToMany(mappedBy = "courses")
+    private List<Student> students = new ArrayList<>();
 }

@@ -9,6 +9,8 @@ import java.util.Date;
 public class PersonDTO extends BaseDTO {
     private String fullName;
     private String address;
+    private String phoneNumber;
+    private String email;
     private String username;
     private String password;
     private Date dateOfBirth;

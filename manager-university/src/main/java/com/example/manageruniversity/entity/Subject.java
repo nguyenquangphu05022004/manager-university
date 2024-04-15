@@ -22,9 +22,10 @@ public class Subject extends Base{
     private Tuition tuition;
     @OneToMany(mappedBy = "subject")
     private List<SubjectGroup> subjectGroups = new ArrayList<>();
-    @ManyToOne
-    @JoinColumn(name = "major_Id")
-    private Major major;
+    @ManyToMany(mappedBy = "subjects")
+    private  List<Major> major = new ArrayList<>();
     @ManyToMany(mappedBy = "subjects")
     private Set<TestSchedule> testSchedules = new HashSet<>();
+    @ManyToMany(mappedBy = "subjects")
+    private List<Teacher> teachers = new ArrayList<>();
 }
