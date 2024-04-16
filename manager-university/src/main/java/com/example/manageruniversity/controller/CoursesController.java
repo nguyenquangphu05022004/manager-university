@@ -2,6 +2,7 @@ package com.example.manageruniversity.controller;
 
 import com.example.manageruniversity.dto.CoursesDTO;
 import com.example.manageruniversity.service.ICoursesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,7 +10,12 @@ import java.util.List;
 @RestController
 public class CoursesController {
 
-    private ICoursesService coursesService;
+    private final ICoursesService coursesService;
+
+    @Autowired
+    public CoursesController(ICoursesService coursesService) {
+        this.coursesService = coursesService;
+    }
 
     @PostMapping("/api/courses")
     public CoursesDTO createCourses(@RequestBody CoursesDTO coursesDTO) {

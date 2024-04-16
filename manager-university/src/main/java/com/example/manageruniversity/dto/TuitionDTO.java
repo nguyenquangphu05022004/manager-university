@@ -7,5 +7,4 @@ import lombok.Getter;
 @Data
 public class TuitionDTO extends BaseDTO{
     private Integer moneyPerCredit;
-
 }

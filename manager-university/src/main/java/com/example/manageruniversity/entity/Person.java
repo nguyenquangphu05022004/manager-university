@@ -1,5 +1,6 @@
 package com.example.manageruniversity.entity;
 
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
 import lombok.Getter;
@@ -19,4 +20,5 @@ public abstract class Person  extends Base{
     private String password;
     private Date dateOfBirth;
     private Boolean sex;
+    private Role role;
 }

@@ -19,6 +19,5 @@ public class TimeDTO extends BaseDTO{
     private LocalTime endTime;
     private LocalDate startDate;
     private LocalDate endDate;
-
     private RoomClassDTO roomClassDTO;
 }

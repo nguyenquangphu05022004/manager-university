@@ -1,13 +1,12 @@
 package com.example.manageruniversity.dto;
 
-import com.example.manageruniversity.entity.Register;
-import com.example.manageruniversity.entity.Subject;
-import com.example.manageruniversity.entity.Teacher;
-import com.example.manageruniversity.entity.Time;
+import lombok.Data;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Getter
+@Data
 public class SubjectGroupDTO extends BaseDTO{
     private String groupName;
     private SubjectDTO subjectDTO;

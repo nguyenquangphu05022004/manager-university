@@ -32,8 +32,8 @@ public class CoursesServiceImpl implements ICoursesService {
         } else {
             coursesNew = CoursesMapper.mapper.coursesDTOtoEntity(coursesDTO);
         }
-        coursesNew = coursesRepository.save(coursesNew);
-        return CoursesMapper.mapper.coursesToDTO(coursesNew);
+        Courses coursesSave = coursesRepository.save(coursesNew);
+        return CoursesMapper.mapper.coursesToDTO(coursesSave);
     }
 
     @Override

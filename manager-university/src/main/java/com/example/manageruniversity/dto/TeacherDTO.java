@@ -1,4 +1,14 @@
 package com.example.manageruniversity.dto;
 
-public class TeacherDTO {
+import lombok.Data;
+import lombok.Getter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Data
+public class TeacherDTO extends PersonDTO{
+    private MajorDTO majorDTO;
+    private List<SubjectDTO> subjectDTOS = new ArrayList<>();
 }

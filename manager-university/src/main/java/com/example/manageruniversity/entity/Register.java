@@ -3,6 +3,9 @@ package com.example.manageruniversity.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "registers")
 @Getter
@@ -19,5 +22,7 @@ public class Register extends Base{
     @ManyToOne
     @JoinColumn(name = "season_id")
     private Season season;
-    private boolean status;
+    @OneToMany(mappedBy = "register")
+    private List<Transaction> transactions = new ArrayList<>();
+    private boolean openTransaction;
 }
