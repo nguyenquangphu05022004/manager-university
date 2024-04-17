@@ -23,7 +23,7 @@ public class Subject extends Base{
     @OneToMany(mappedBy = "subject")
     private List<SubjectGroup> subjectGroups = new ArrayList<>();
     @ManyToMany(mappedBy = "subjects")
-    private  List<Major> major = new ArrayList<>();
+    private  List<MajorRegister> majorRegisters = new ArrayList<>();
     @ManyToMany(mappedBy = "subjects")
     private Set<TestSchedule> testSchedules = new HashSet<>();
     @ManyToMany(mappedBy = "subjects")

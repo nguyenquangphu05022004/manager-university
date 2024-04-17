@@ -20,5 +20,4 @@ public interface SubjectMapper {
 
     TuitionDTO tuitionToDTO(Tuition tuition);
 
-    SubjectGroupDTO subjectGroupToDTO(SubjectGroup subjectGroup);
 }

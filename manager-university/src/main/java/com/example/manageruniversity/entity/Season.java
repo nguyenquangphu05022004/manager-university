@@ -27,6 +27,4 @@ public class Season extends Base{
     @OneToMany(mappedBy = "season")
     private List<TestSchedule> testSchedules = new ArrayList<>();
 
-    @OneToMany(mappedBy = "season")
-    private List<Major> majors = new ArrayList<>();
 }

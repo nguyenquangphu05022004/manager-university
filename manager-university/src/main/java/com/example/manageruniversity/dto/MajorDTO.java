@@ -10,6 +10,5 @@ import java.util.List;
 public class MajorDTO extends BaseDTO{
     private String name;
     private String sub;
-    private List<SubjectDTO> subjectDTOS = new ArrayList<>();
-    private SeasonDTO seasonDTO;
+    private List<MajorRegisterDTO> majorRegisterDTOS = new ArrayList<>();
 }

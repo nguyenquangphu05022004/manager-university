@@ -16,10 +16,14 @@ public interface StudentMapper {
 
     @Mapping(target = "major", source = "dto.majorDTO")
     Student studentDTOToEntity(StudentDTO dto);
+
+    @Mapping(target = "majorDTO", source = "student.major")
     StudentDTO studentToDTO(Student student);
 
     @Mapping(target = "id", source = "dto.id")
     Major majorDTOToEntity(MajorDTO dto);
+
+    MajorDTO majorDTOToEntity(Major major);
 
 
 }
