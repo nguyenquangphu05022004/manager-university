@@ -20,7 +20,23 @@ public class Register extends Base{
     private SubjectGroup subjectGroup;
     @OneToOne(mappedBy = "register")
     private Grade grade;
-    @OneToMany(mappedBy = "register")
+    @OneToMany(mappedBy = "targetRegister")
     private List<Transaction> transactions = new ArrayList<>();
     private boolean openTransaction;
+
+
+    @Transient
+    public List<Register> getRegisterListRequestFromStudent() {
+        List<Register> registers = new ArrayList<>();
+        for(Transaction transaction: transactions) {
+            for(Register register: transaction.getStudent().getRegisters()) {
+                if(this.subjectGroup.getSubject().
+                        equals(register.getSubjectGroup().getSubject())) {
+                    registers.add(register);
+                }
+            }
+        }
+        return registers;
+    }
+
 }

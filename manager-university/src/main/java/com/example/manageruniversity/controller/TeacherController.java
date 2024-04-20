@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 public class TeacherController {
     private final ITeacherService teacherService;
 

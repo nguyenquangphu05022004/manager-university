@@ -12,9 +12,10 @@ import org.mapstruct.factory.Mappers;
 public interface TimeMapper {
     TimeMapper mapper = Mappers.getMapper(TimeMapper.class);
 
+    @Mapping(target = "roomClass", source = "timeDTO.roomClassDTO")
+    @Mapping(target = "subjectGroup", source = "timeDTO.subjectGroupDTO")
     Time timeDTOToEntity(TimeDTO timeDTO);
     @Mapping(target = "roomClassDTO", source = "time.roomClass")
+    @Mapping(target = "subjectGroupDTO", source = "time.subjectGroup")
     TimeDTO timeToDTO(Time time);
-
-    RoomClassDTO roomClassToDTO(RoomClass roomClass);
 }

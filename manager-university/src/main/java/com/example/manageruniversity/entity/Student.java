@@ -21,4 +21,10 @@ public class Student extends Person{
     @ManyToOne
     @JoinColumn(name = "courses_id")
     private Courses courses;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "student")
+    private List<Transaction> transactions = new ArrayList<>();
 }

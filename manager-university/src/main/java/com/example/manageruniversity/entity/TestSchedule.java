@@ -21,6 +21,7 @@ public class TestSchedule extends Base{
     @ManyToOne
     @JoinColumn(name = "season_id")
     private Season season;
+
     @ManyToMany
     @JoinTable(name = "test_schedule_subjects", joinColumns = @JoinColumn(name = "test_schedule_id"),
     inverseJoinColumns = @JoinColumn(name = "subject_id"))

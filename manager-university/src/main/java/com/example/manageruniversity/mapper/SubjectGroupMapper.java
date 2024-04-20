@@ -16,7 +16,4 @@ public interface SubjectGroupMapper {
     SubjectGroup subjectGroupDTOToEntity(SubjectGroupDTO subjectGroupDTO);
     @Mapping(target = "subjectDTO", source = "subjectGroup.subject")
     SubjectGroupDTO subjectGroupToDTO(SubjectGroup subjectGroup);
-
-    SubjectDTO subjectDTOToEntity(SubjectDTO subjectDTO);
-    SubjectDTO subjectToDTO(Subject subject);
 }

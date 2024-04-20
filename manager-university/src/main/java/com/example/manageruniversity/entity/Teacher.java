@@ -12,6 +12,10 @@ import java.util.List;
 @Getter
 @Data
 public class Teacher extends Person{
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     @ManyToOne
     @JoinColumn(name = "major_id")
     private Major major;
