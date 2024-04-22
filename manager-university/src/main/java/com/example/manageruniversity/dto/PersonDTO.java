@@ -11,8 +11,6 @@ public class PersonDTO extends BaseDTO {
     private String address;
     private String phoneNumber;
     private String email;
-    private String username;
-    private String password;
     private Date dateOfBirth;
     private Boolean sex;
 }

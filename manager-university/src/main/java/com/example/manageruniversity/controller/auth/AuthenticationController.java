@@ -1,6 +1,7 @@
 package com.example.manageruniversity.controller.auth;
 import com.example.manageruniversity.dto.auth.AuthenticationRequest;
 import com.example.manageruniversity.dto.auth.AuthenticationResponse;
+import com.example.manageruniversity.dto.auth.RegisterRequest;
 import com.example.manageruniversity.service.auth.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,8 +17,8 @@ public class AuthenticationController {
     private final AuthenticationService authService;
 
     @PostMapping("/register")
-    public AuthenticationResponse register(@RequestBody AuthenticationRequest authRequest) {
-        return authService.register(authRequest);
+    public AuthenticationResponse register(@RequestBody RegisterRequest registerRequest) {
+        return authService.register(registerRequest);
     }
     @PostMapping("/authenticate")
     public AuthenticationResponse authenticate(@RequestBody AuthenticationRequest authRequest) {

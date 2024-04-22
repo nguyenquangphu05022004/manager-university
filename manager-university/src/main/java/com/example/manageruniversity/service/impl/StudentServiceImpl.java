@@ -23,11 +23,13 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public StudentDTO saveOrUpdate(StudentDTO studentDTO) {
+        if(studentDTO == null) return null;
         Student student = null;
         if(studentDTO.getId() != null) {
 
         } else {
             student = StudentMapper.mapper.studentDTOToEntity(studentDTO);
+
         }
         student = studentRepository.save(student);
         return StudentMapper.mapper.studentToDTO(student);

@@ -4,6 +4,7 @@ import com.example.manageruniversity.entity.auth.User;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "teachers")
 @Getter
-@Data
+@Setter
 public class Teacher extends Person{
 
     @OneToOne

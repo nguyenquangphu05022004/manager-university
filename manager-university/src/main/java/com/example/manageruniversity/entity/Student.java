@@ -23,7 +23,7 @@ public class Student extends Person{
     private Courses courses;
     @OneToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User user = new User();
 
     @OneToMany(mappedBy = "student")
     private List<Transaction> transactions = new ArrayList<>();

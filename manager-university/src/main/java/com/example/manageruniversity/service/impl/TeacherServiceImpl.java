@@ -22,6 +22,7 @@ public class TeacherServiceImpl implements ITeacherService {
 
     @Override
     public TeacherDTO saveOrUpdate(TeacherDTO teacherDTO) {
+        if(teacherDTO == null) return null;
         Teacher teacher = null;
         if (teacherDTO.getId() != null) {
 
