@@ -1,6 +1,6 @@
-package com.example.manageruniversity.repository;
+package com.example.manageruniversity.repository.auth;
 
-import com.example.manageruniversity.entity.User;
+import com.example.manageruniversity.entity.auth.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

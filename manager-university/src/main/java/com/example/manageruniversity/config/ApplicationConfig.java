@@ -1,7 +1,7 @@
 package com.example.manageruniversity.config;
 
 import com.example.manageruniversity.exception.UserNotFoundExecption;
-import com.example.manageruniversity.repository.UserRepository;
+import com.example.manageruniversity.repository.auth.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,8 +21,9 @@ public class ApplicationConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userRepository.findByUsername(username)
+        UserDetailsService userDetailsService =  (username) -> userRepository.findByUsername(username)
                 .orElseThrow(() -> new UserNotFoundExecption("Username", "username", username));
+        return userDetailsService;
     }
 
     @Bean

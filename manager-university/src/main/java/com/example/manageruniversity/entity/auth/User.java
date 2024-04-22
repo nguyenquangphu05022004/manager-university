@@ -1,5 +1,9 @@
-package com.example.manageruniversity.entity;
+package com.example.manageruniversity.entity.auth;
 
+import com.example.manageruniversity.entity.Base;
+import com.example.manageruniversity.entity.Role;
+import com.example.manageruniversity.entity.Student;
+import com.example.manageruniversity.entity.Teacher;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +13,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -28,6 +34,9 @@ public class User extends Base implements UserDetails {
     private Student student;
     @OneToOne(mappedBy = "user")
     private Teacher teacher;
+
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

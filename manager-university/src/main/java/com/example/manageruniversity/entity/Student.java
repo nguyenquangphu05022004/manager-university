@@ -1,9 +1,9 @@
 package com.example.manageruniversity.entity;
 
+import com.example.manageruniversity.entity.auth.User;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
-import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
