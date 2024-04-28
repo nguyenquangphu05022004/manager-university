@@ -12,8 +12,9 @@ import java.time.LocalTime;
 @Table(name = "times")
 @Data
 @Getter
-@ToString
 public class Time extends Base{
+    // 0 -> sunday 1-> monday
+    private Integer dayOfWeek;
     private LocalTime startTime;
     private LocalTime endTime;
     private LocalDate startDate;

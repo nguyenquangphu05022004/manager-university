@@ -24,7 +24,6 @@ public class Register extends Base{
     private List<Transaction> transactions = new ArrayList<>();
     private boolean openTransaction;
 
-
     @Transient
     public List<Register> getRegisterListRequestFromStudent() {
         List<Register> registers = new ArrayList<>();

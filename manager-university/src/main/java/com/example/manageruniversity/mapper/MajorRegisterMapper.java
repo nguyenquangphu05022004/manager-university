@@ -19,14 +19,11 @@ public interface MajorRegisterMapper {
     @Mapping(target = "subjectDTOS", source = "majorRegister.subjects")
     MajorRegisterDTO majorRegisterToDTO(MajorRegister majorRegister);
 
-    Subject subjectDTOToEntity(SubjectDTO subjectDTO);
-    @Mapping(target = "subjectGroupDTOS", source = "subject.subjectGroups")
     SubjectDTO subjectToDTO(Subject subject);
     Season seasonDTOToEntity(SeasonDTO seasonDTO);
     SeasonDTO seasonToDTO(Season season);
     Major majorDTOToEntity(MajorDTO majorDTO);
     MajorDTO majorToDTO(Major major);
-    @Mapping(target = "timeDTOS", source = "subjectGroup.times")
     SubjectGroupDTO subjectGroupToDTO(SubjectGroup subjectGroup);
 
 }

@@ -19,7 +19,7 @@ public class Subject extends Base{
     private String subjectName;
     private String subjectCode;
     private Integer credit;
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tuition_id")
     private Tuition tuition;
     @OneToMany(mappedBy = "subject")
@@ -28,8 +28,6 @@ public class Subject extends Base{
     private  List<MajorRegister> majorRegisters = new ArrayList<>();
     @ManyToMany(mappedBy = "subjects")
     private Set<TestSchedule> testSchedules = new HashSet<>();
-    @ManyToMany(mappedBy = "subjects")
-    private List<Teacher> teachers = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {

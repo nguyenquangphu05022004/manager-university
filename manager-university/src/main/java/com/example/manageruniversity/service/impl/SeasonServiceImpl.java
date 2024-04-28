@@ -44,4 +44,12 @@ public class SeasonServiceImpl implements ISeasonService {
     public void delete(Long id) {
         seasonRepository.deleteById(id);
     }
+
+    @Override
+    public List<SeasonDTO> findAllByStudentId(Long studentId) {
+        List<Season> seasons = seasonRepository.findAllByStudentId(studentId);
+        return seasons.stream().map(season -> {
+            return SeasonMapper.mapper.seasonToDTO(season);
+        }).collect(Collectors.toList());
+    }
 }

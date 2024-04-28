@@ -44,4 +44,13 @@ public class SubjectGroupServiceImpl implements ISubjectGroupService {
     public void delete(Long id) {
         subjectGroupRepository.deleteById(id);
     }
+
+    @Override
+    public List<SubjectGroupDTO> findAllBySubjectId(Long subjectId) {
+        List<SubjectGroup> subjectGroups = subjectGroupRepository.findAllBySubjectId(subjectId);
+        List<SubjectGroupDTO> subjectGroupDTOList = subjectGroups.stream().map(subjectGroup -> {
+            return SubjectGroupMapper.mapper.subjectGroupToDTO(subjectGroup);
+        }).collect(Collectors.toList());
+        return subjectGroupDTOList;
+    }
 }

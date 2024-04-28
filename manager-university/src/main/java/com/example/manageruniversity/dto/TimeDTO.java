@@ -13,12 +13,12 @@ import java.time.LocalTime;
 
 @Getter
 @Data
-@ToString
 public class TimeDTO extends BaseDTO{
+    private Integer dayOfWeek;
     private LocalTime startTime;
     private LocalTime endTime;
     private LocalDate startDate;
     private LocalDate endDate;
-    private RoomClassDTO roomClassDTO;
+    private RoomClassDTO roomClass;
     private SubjectGroupDTO subjectGroupDTO;
 }

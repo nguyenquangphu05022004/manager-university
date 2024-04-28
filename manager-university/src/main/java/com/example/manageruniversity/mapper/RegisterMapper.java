@@ -14,7 +14,6 @@ public interface RegisterMapper {
     @Mapping(target = "studentDTO", source = "register.student")
     @Mapping(target = "subjectGroupDTO", source = "register.subjectGroup")
     @Mapping(target = "subjectGroupDTO.subjectDTO", source = "register.subjectGroup.subject")
-    @Mapping(target = "subjectGroupDTO.timeDTOS", source = "register.subjectGroup.times")
     RegisterDTO registerToDTO(Register register);
 
     @Mapping(target = "student", source = "registerDTO.studentDTO")

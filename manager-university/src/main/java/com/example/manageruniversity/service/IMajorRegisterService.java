@@ -4,6 +4,10 @@ import com.example.manageruniversity.dto.MajorDTO;
 import com.example.manageruniversity.dto.MajorRegisterDTO;
 
 public interface IMajorRegisterService extends IGenericService<MajorRegisterDTO> {
-    MajorRegisterDTO findByMajorIdAndIsBlock(Long majorId); //isBlock default false
+    /**
+     * Season disabled -> after day register subject expired disabled: true
+     * else disabled: false
+     */
+    MajorRegisterDTO findByMajorIdAndSeasonDisabled(Long majorId, boolean disabled); //isBlock default false
 
 }

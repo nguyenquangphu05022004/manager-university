@@ -10,6 +10,5 @@ import java.util.List;
 @Data
 public class TeacherDTO extends PersonDTO{
     private MajorDTO majorDTO;
-    private List<SubjectDTO> subjectDTOS = new ArrayList<>();
     private Long userId;
 }

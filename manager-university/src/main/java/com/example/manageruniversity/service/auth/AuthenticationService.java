@@ -6,8 +6,6 @@ import com.example.manageruniversity.dto.auth.AuthenticationRequest;
 import com.example.manageruniversity.dto.auth.AuthenticationResponse;
 import com.example.manageruniversity.dto.auth.RegisterRequest;
 import com.example.manageruniversity.entity.Role;
-import com.example.manageruniversity.entity.Student;
-import com.example.manageruniversity.entity.Teacher;
 import com.example.manageruniversity.entity.auth.Token;
 import com.example.manageruniversity.entity.auth.TokenType;
 import com.example.manageruniversity.entity.auth.User;
@@ -17,9 +15,11 @@ import com.example.manageruniversity.repository.auth.TokenRepository;
 import com.example.manageruniversity.repository.auth.UserRepository;
 import com.example.manageruniversity.service.IStudentService;
 import com.example.manageruniversity.service.ITeacherService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -97,5 +97,21 @@ public class AuthenticationService {
                 .accessToken(jwt)
                 .person(student == null ? teacher : student)
                 .build();
+    }
+
+    public void logout(HttpServletRequest request) {
+        final String authHeader = request.getHeader("Authorization");
+        final String jwt;
+        if(authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return;
+        }
+        jwt = authHeader.substring(7);
+        var storedToken = tokenRepository.findByToken(jwt).orElse(null);
+        if(storedToken != null) {
+            storedToken.setExpired(true);
+            storedToken.setRevoked(true);
+            tokenRepository.save(storedToken);
+            SecurityContextHolder.clearContext();
+        }
     }
 }

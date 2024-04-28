@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1")
 @CrossOrigin("*")
 public class MajorController {
     private final IMajorService majorService;
@@ -17,23 +18,23 @@ public class MajorController {
         this.majorService = majorService;
     }
 
-    @PostMapping("/api/majors")
+    @PostMapping("/majors")
     public MajorDTO createMajor(@RequestBody MajorDTO majorDTO) {
         return majorService.saveOrUpdate(majorDTO);
     }
-    @PutMapping("/api/majors/{majorId}")
+    @PutMapping("/majors/{majorId}")
     public MajorDTO updateMajor(@RequestBody MajorDTO majorDTO,
                                 @PathVariable("majorId") Long majorId) {
         majorDTO.setId(majorId);
         return majorService.saveOrUpdate(majorDTO);
     }
 
-    @GetMapping("/api/majors")
+    @GetMapping("/majors")
     public List<MajorDTO> majorList() {
         return majorService.records();
     }
 
-    @DeleteMapping("/api/majors/{majorId}")
+    @DeleteMapping("/majors/{majorId}")
     public void deleteMajor(@PathVariable("majorId") Long majorId) {
         majorService.delete(majorId);
     }

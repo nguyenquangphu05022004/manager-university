@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1")
 @CrossOrigin("*")
 public class TeacherController {
     private final ITeacherService teacherService;
@@ -18,19 +19,19 @@ public class TeacherController {
         this.teacherService = teacherService;
     }
 
-    @PostMapping("/api/teachers")
+    @PostMapping("/teachers")
     public TeacherDTO createTeacher(@RequestBody TeacherDTO teacherDTO) {
         return teacherService.saveOrUpdate(teacherDTO);
     }
-    @GetMapping("/api/teachers")
+    @GetMapping("/teachers")
     public List<TeacherDTO> teacherList() {
         return teacherService.records();
     }
-    @DeleteMapping("/api/teachers/{teacherId}")
+    @DeleteMapping("/teachers/{teacherId}")
     public void deleteTeacher(@PathVariable("teacherId") Long teacherId) {
         teacherService.delete(teacherId);
     }
-    @PutMapping("/api/teachers/{teacherId}")
+    @PutMapping("/teachers/{teacherId}")
     public TeacherDTO updateTeacher(@PathVariable("teacherId") Long teacherId,
                                     @RequestBody TeacherDTO teacherDTO) {
         teacherDTO.setId(teacherId);

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1")
+@CrossOrigin("*")
 public class SemesterController {
     private final ISemesterService semesterService;
 
@@ -16,21 +18,21 @@ public class SemesterController {
         this.semesterService = semesterService;
     }
 
-    @PostMapping("/api/semesters")
+    @PostMapping("/semesters")
     public SemesterDTO createSemester(@RequestBody SemesterDTO semesterDTO) {
         return semesterService.saveOrUpdate(semesterDTO);
     }
-    @PutMapping("/api/semesters/{semesterId}")
+    @PutMapping("/semesters/{semesterId}")
     public SemesterDTO updateSemester(@PathVariable("semesterId") Long semesterId,
                                       @RequestBody SemesterDTO semesterDTO) {
         semesterDTO.setId(semesterId);
         return semesterService.saveOrUpdate(semesterDTO);
     }
-    @GetMapping("/api/semesters")
+    @GetMapping("/semesters")
     public List<SemesterDTO> semesterList() {
         return semesterService.records();
     }
-    @DeleteMapping("/api/semesters/{semesterId}")
+    @DeleteMapping("/semesters/{semesterId}")
     public void deleteSemester(@PathVariable("semesterId") Long semesterId) {
         semesterService.delete(semesterId);
     }

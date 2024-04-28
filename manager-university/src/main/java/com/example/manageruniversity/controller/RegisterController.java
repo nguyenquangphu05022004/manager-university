@@ -1,6 +1,7 @@
 package com.example.manageruniversity.controller;
 
 import com.example.manageruniversity.dto.RegisterDTO;
+import com.example.manageruniversity.entity.Register;
 import com.example.manageruniversity.service.IRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1")
+@CrossOrigin("*")
 public class RegisterController {
     private final IRegisterService registerService;
 
@@ -17,32 +20,38 @@ public class RegisterController {
         this.registerService = registerService;
     }
 
-    @PostMapping("/api/registers")
+    @PostMapping("/registers")
     public RegisterDTO createRegister(@RequestBody RegisterDTO registerDTO) {
         return registerService.saveOrUpdate(registerDTO);
     }
-    @DeleteMapping("/api/register/{registerId}")
+    @DeleteMapping("/register/{registerId}")
     public void deleteRegister(@PathVariable("registerId") Long registerId) {
         registerService.delete(registerId);
     }
-    @GetMapping("/api/registers")
+    @GetMapping("/registers")
     public List<RegisterDTO> registerList() {
         return registerService.records();
     }
 
-    @GetMapping("/api/registers/student/{studentId}")
-    public List<RegisterDTO> registerListByStudentId(@PathVariable("studentId") Long studentId) {
-        return registerService.recordsByStudentId(studentId);
+
+    @GetMapping("/registers/student/{studentId}")
+    public List<RegisterDTO> getRegisterListByStudentIdAndSeasonNotDisable(@PathVariable("studentId") Long studentId) {
+        return registerService.getRegisterByStudentIdAndSeason(studentId, false);
     }
 
-    @PutMapping("/api/registers/transaction/{registerId}")
+    @PutMapping("/registers/transaction/{registerId}")
     public ResponseEntity<?> transaction(@PathVariable("registerId") Long registerId,
-                                               @RequestParam("transaction") boolean transaction) {
+                                         @RequestParam("transaction") boolean transaction) {
          registerService.transaction(registerId, transaction);
          return ResponseEntity.ok("Register with Id: " + registerId + " was "+ (transaction ? "opened" : "closed")  +  " transaction");
     }
-    @GetMapping("/api/registers/transaction")
+    @GetMapping("/registers/transaction")
     public List<RegisterDTO> registerListByTransaction(@RequestParam("transaction") boolean transaction) {
         return registerService.recordsByTransactionStatus(transaction);
+    }
+    @GetMapping("/registers/student/{studentId}/subject/{subjectId}")
+    public List<RegisterDTO> getListRegisterOpenedTransactionBySubjectId(@PathVariable("studentId") Long studentId,
+                                                                         @PathVariable("subjectId") Long subjectId) {
+        return registerService.findAllRegisterOpenedBySubjectIdAndNotOfStudentId(subjectId, studentId);
     }
 }

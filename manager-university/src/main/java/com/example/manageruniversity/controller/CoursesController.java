@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1")
 @CrossOrigin("*")
 public class CoursesController {
 
@@ -18,21 +19,21 @@ public class CoursesController {
         this.coursesService = coursesService;
     }
 
-    @PostMapping("/api/courses")
+    @PostMapping("/courses")
     public CoursesDTO createCourses(@RequestBody CoursesDTO coursesDTO) {
         return coursesService.saveOrUpdate(coursesDTO);
     }
-    @PutMapping("/api/courses/{coursesId}")
+    @PutMapping("/courses/{coursesId}")
     public CoursesDTO updateCourses(@PathVariable("coursesId") Long coursesId,
                                     @RequestBody CoursesDTO coursesDTO) {
         coursesDTO.setId(coursesId);
         return coursesService.saveOrUpdate(coursesDTO);
     }
-    @GetMapping("/api/courses")
+    @GetMapping("/courses")
     public List<CoursesDTO> coursesList() {
         return coursesService.records();
     }
-    @DeleteMapping("/api/courses/{coursesId}")
+    @DeleteMapping("/courses/{coursesId}")
     public void deleteCourses(@PathVariable("coursesId") Long coursesId) {
         coursesService.delete(coursesId);
     }

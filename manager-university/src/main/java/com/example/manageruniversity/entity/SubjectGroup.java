@@ -24,6 +24,9 @@ public class SubjectGroup extends Base {
 
     @OneToMany(mappedBy = "subjectGroup")
     private List<Register> registers = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
 
     @Override
     public boolean equals(Object o) {

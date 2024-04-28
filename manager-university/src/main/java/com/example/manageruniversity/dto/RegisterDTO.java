@@ -15,4 +15,5 @@ public class RegisterDTO extends BaseDTO{
     private boolean openTransaction;
 
     private List<RegisterDTO> listRegisterRequest = new ArrayList<>();
+
 }

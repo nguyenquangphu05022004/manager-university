@@ -25,6 +25,4 @@ public class MajorRegister extends Base{
     inverseJoinColumns = @JoinColumn(name = "subjectId"))
     private List<Subject> subjects = new ArrayList<>();
 
-    private Boolean isBlock;
-
 }

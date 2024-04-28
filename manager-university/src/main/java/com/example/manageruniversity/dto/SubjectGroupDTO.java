@@ -10,7 +10,8 @@ import java.util.List;
 public class SubjectGroupDTO extends BaseDTO{
     private String groupName;
     private SubjectDTO subjectDTO;
+    private TeacherDTO teacher;
     private Integer numberOfStudent;
-    private List<TimeDTO> timeDTOS = new ArrayList<>();
+    private List<TimeDTO> times = new ArrayList<>();
     private List<RegisterDTO> registerDTOS = new ArrayList<>();
 }

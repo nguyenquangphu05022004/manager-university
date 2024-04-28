@@ -1,4 +1,7 @@
 package com.example.manageruniversity.repository;
 
-public interface TuitionRepository {
+import com.example.manageruniversity.entity.Tuition;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TuitionRepository extends JpaRepository<Tuition, Long> {
 }

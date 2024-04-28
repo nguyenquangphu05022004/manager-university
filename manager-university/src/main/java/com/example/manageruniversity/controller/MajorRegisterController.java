@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1")
+@CrossOrigin("*")
 public class MajorRegisterController {
     private final IMajorRegisterService majorRegisterService;
 
@@ -15,11 +17,11 @@ public class MajorRegisterController {
         this.majorRegisterService = majorRegisterService;
     }
 
-    @PostMapping("/api/majorRegisters")
+    @PostMapping("/majorRegisters")
     public MajorRegisterDTO createMajorRegister(@RequestBody MajorRegisterDTO majorRegisterDTO) {
         return majorRegisterService.saveOrUpdate(majorRegisterDTO);
     }
-    @PutMapping("/api/majorRegisters/{majorRegisterId}")
+    @PutMapping("/majorRegisters/{majorRegisterId}")
     public MajorRegisterDTO createMajorRegister(@RequestBody MajorRegisterDTO majorRegisterDTO,
                                                 @PathVariable("majorRegisterId") Long majorRegisterId) {
         return majorRegisterService.saveOrUpdate(majorRegisterDTO);
@@ -28,13 +30,13 @@ public class MajorRegisterController {
     public void deleteMajorRegister(@PathVariable("majorRegisterId") Long majorRegisterId) {
         majorRegisterService.delete(majorRegisterId);
     }
-    @GetMapping("/api/majorRegisters")
+    @GetMapping("/majorRegisters")
     public List<MajorRegisterDTO> majorRegisterList() {
         return majorRegisterService.records();
     }
 
-    @GetMapping("/api/majorRegisters/major/{majorId}")
-    public MajorRegisterDTO getByMajorIdAndIsBlockIsFalse(@PathVariable("majorId") Long majorId) {
-        return majorRegisterService.findByMajorIdAndIsBlock(majorId);
+    @GetMapping("/majorRegisters/major/{majorId}")
+    public MajorRegisterDTO getByMajorIdAndSeasonDisabledIsFalse(@PathVariable("majorId") Long majorId) {
+        return majorRegisterService.findByMajorIdAndSeasonDisabled(majorId, false);
     }
 }

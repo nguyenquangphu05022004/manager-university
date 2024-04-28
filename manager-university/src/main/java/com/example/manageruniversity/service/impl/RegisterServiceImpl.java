@@ -9,6 +9,7 @@ import com.example.manageruniversity.service.IRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -60,11 +61,28 @@ public class RegisterServiceImpl implements IRegisterService {
         return convertList(registers);
     }
 
+    @Override
+    public List<RegisterDTO> getRegisterByStudentIdAndSeason(Long studentId, boolean seasonIsDisabled) {
+        List<Register> registers = registerRepository.findAll(studentId, seasonIsDisabled);
+        return convertList(registers);
+    }
+
+    @Override
+    public List<RegisterDTO> findAllRegisterOpenedBySubjectIdAndNotOfStudentId(Long subjectId, Long studentId) {
+        List<Register> registers = registerRepository.findAllRegisterOpenedBySubjectIdAndNotOfStudentId(subjectId, studentId);
+        return convertList(registers);
+    }
+
     private List<RegisterDTO> convertList(List<Register> registers) {
         List<RegisterDTO> registerList = registers.stream()
                 .map(register -> {
                     RegisterDTO registerDTO = RegisterMapper.mapper.registerToDTO(register);
-                    registerDTO.setListRegisterRequest(convertList(register.getRegisterListRequestFromStudent()));
+                    List<RegisterDTO> list = new ArrayList<>();
+                    for(Register r : register.getRegisterListRequestFromStudent()) {
+                        r.setTransactions(new ArrayList<>());
+                        list.add(RegisterMapper.mapper.registerToDTO(r));
+                    }
+                    registerDTO.setListRegisterRequest(list);
                     return registerDTO;
                 }).collect(Collectors.toList());
         return registerList;

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1")
 @CrossOrigin("*")
 public class SubjectController {
     private  final ISubjectService subjectService;
@@ -17,22 +18,22 @@ public class SubjectController {
         this.subjectService = subjectService;
     }
 
-    @PostMapping("/api/subjects")
+    @PostMapping("/subjects")
     public SubjectDTO createSubject(@RequestBody SubjectDTO subjectDTO) {
         return subjectService.saveOrUpdate(subjectDTO);
     }
-    @PutMapping("/api/subjects/{subjectId}")
+    @PutMapping("/subjects/{subjectId}")
     public SubjectDTO updateSubject(@PathVariable("subjectId") Long subjectId,
                                     @RequestBody SubjectDTO subjectDTO) {
         subjectDTO.setId(subjectId);
         return subjectService.saveOrUpdate(subjectDTO);
     }
-    @DeleteMapping("/api/subjects/{subjectId}")
+    @DeleteMapping("/subjects/{subjectId}")
     public void deleteSubject(@PathVariable("subjectId") Long subjectId) {
         subjectService.delete(subjectId);
     }
 
-    @GetMapping("/api/subjects")
+    @GetMapping("/subjects")
     public List<SubjectDTO> subjectList() {
         return subjectService.records();
     }

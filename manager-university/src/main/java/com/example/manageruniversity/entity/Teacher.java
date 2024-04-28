@@ -21,8 +21,6 @@ public class Teacher extends Person{
     @ManyToOne
     @JoinColumn(name = "major_id")
     private Major major;
-    @ManyToMany
-    @JoinTable(name = "teacher_subjects", joinColumns = @JoinColumn(name = "teacher_id"),
-    inverseJoinColumns = @JoinColumn(name = "subject_id"))
-    private List<Subject> subjects = new ArrayList<>();
+    @OneToMany(mappedBy = "teacher")
+    private List<SubjectGroup> subjectGroups = new ArrayList<>();
 }

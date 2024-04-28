@@ -45,8 +45,8 @@ public class MajorRegisterServiceImpl implements IMajorRegisterService {
     }
 
     @Override
-    public MajorRegisterDTO findByMajorIdAndIsBlock(Long majorId) {
-        MajorRegister majorRegister = majorRegisterRepository.findByMajorIdAndIsBlock(majorId, false);
+    public MajorRegisterDTO findByMajorIdAndSeasonDisabled(Long majorId, boolean disabled) {
+        MajorRegister majorRegister = majorRegisterRepository.findByMajorIdAndSeasonDisabled(majorId, disabled);
         return MajorRegisterMapper.mapper.majorRegisterToDTO(majorRegister);
     }
 }

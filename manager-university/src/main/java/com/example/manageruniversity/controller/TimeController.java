@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1")
+@CrossOrigin("*")
 public class TimeController {
     private final ITimeService timeService;
 
@@ -16,21 +18,21 @@ public class TimeController {
         this.timeService = timeService;
     }
 
-    @PostMapping("/api/times")
+    @PostMapping("/times")
     public TimeDTO createTime(@RequestBody TimeDTO timeDTO) {
         return timeService.saveOrUpdate(timeDTO);
     }
-    @PutMapping("/api/times/{timeId}")
+    @PutMapping("/times/{timeId}")
     public TimeDTO updateTime(@PathVariable("timeId") Long timeId,
                               @RequestBody TimeDTO timeDTO) {
         timeDTO.setId(timeId);
         return timeService.saveOrUpdate(timeDTO);
     }
-    @DeleteMapping("/api/times/{timeId}")
+    @DeleteMapping("/times/{timeId}")
     public void deleteTime(@PathVariable("timeId") Long timeId) {
         timeService.delete(timeId);
     }
-    @GetMapping("/api/times")
+    @GetMapping("/times")
     public List<TimeDTO> timeList() {
         return timeService.records();
     }

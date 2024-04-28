@@ -23,7 +23,4 @@ public interface MajorMapper {
     @Mapping(target = "seasonDTO", source = "majorRegister.season")
     @Mapping(target = "subjectDTOS", source = "majorRegister.subjects")
     MajorRegisterDTO majorRegisterToDTO(MajorRegister majorRegister);
-
-    SubjectDTO subjectToDTO(Subject subject);
-    SeasonDTO seasonToDTO(Season season);
 }

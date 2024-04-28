@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/v1")
 @CrossOrigin("*")
 public class SeasonController {
     private final ISeasonService seasonService;
@@ -16,23 +17,27 @@ public class SeasonController {
     public SeasonController(ISeasonService seasonService) {
         this.seasonService = seasonService;
     }
-    @PostMapping("/api/seasons")
+    @PostMapping("/seasons")
     public SeasonDTO createSeason(@RequestBody SeasonDTO seasonDTO) {
         return seasonService.saveOrUpdate(seasonDTO);
     }
 
-    @PutMapping("/api/seasons/{seasonId}")
+    @PutMapping("/seasons/{seasonId}")
     public SeasonDTO updateSeason(@PathVariable("seasonId") Long seasonId,
                                   @RequestBody SeasonDTO seasonDTO) {
         seasonDTO.setId(seasonId);
         return seasonService.saveOrUpdate(seasonDTO);
     }
-    @DeleteMapping("/api/seasons/{seasonId}")
+    @DeleteMapping("/seasons/{seasonId}")
     public void deleteSeason(@PathVariable("seasonId") Long seasonId) {
         seasonService.delete(seasonId);
     }
-    @GetMapping("/api/seasons")
+    @GetMapping("/seasons")
     public List<SeasonDTO> seasonList() {
         return seasonService.records();
+    }
+    @GetMapping("/seasons/student/{studentId}")
+    public List<SeasonDTO> getListSeasonByStudent(@PathVariable("studentId") Long studentId) {
+        return seasonService.findAllByStudentId(studentId);
     }
 }

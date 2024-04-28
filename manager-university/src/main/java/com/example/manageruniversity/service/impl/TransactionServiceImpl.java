@@ -24,18 +24,18 @@ public class TransactionServiceImpl implements ITransactionService {
     @Override
     public void save(Long targetRegisterId, Long studentId) {
         Student student = studentRepository.findById(studentId)
-                .orElseThrow(()->new NotFoundIdException("Student", "Id",
+                .orElseThrow(() -> new NotFoundIdException("Student", "Id",
                         String.valueOf(studentId)));
 
         Register targetRegister = findRegisterById(targetRegisterId);
 
         //search subject that student registered like subject of targetRegister
-        for(Register registerOfStudent : student.getRegisters()) {
-            if(!registerOfStudent.getSubjectGroup()
+        for (Register registerOfStudent : student.getRegisters()) {
+            if (!registerOfStudent.getSubjectGroup()
                     .equals(targetRegister.getSubjectGroup())
-                &&
+                    &&
                     registerOfStudent.getSubjectGroup().getSubject()
-                    .equals(targetRegister.getSubjectGroup().getSubject())
+                            .equals(targetRegister.getSubjectGroup().getSubject())
             ) {
                 transactionRepository.save(new Transaction(targetRegister, student));
                 return;
@@ -54,7 +54,7 @@ public class TransactionServiceImpl implements ITransactionService {
     @Transactional
     public void confirmTransaction(Long targetRegisterId, Long requestRegisterId) {
         Register targetRegister = findRegisterById(targetRegisterId);
-        Register requestRegister =  findRegisterById(requestRegisterId);
+        Register requestRegister = findRegisterById(requestRegisterId);
 
         Student targetStudent = targetRegister.getStudent();
         //update targetRegister for requestStudent and opposite
@@ -67,13 +67,19 @@ public class TransactionServiceImpl implements ITransactionService {
         registerRepository.save(targetRegister);
         registerRepository.save(requestRegister);
         //after update register we are needing clear all transaction of two register
-        transactionRepository.deleteAllByTargetRegisterId(targetRegisterId);
+        //delete request of all student
         transactionRepository.deleteAllByTargetRegisterId(requestRegisterId);
+        transactionRepository.deleteAllByTargetRegisterId(targetRegisterId);
+        //delete request of current student to all different student
+        transactionRepository.deleteAllRequest(requestRegister.getStudent().getId(),
+                requestRegister.getSubjectGroup().getSubject().getId());
+        transactionRepository.deleteAllRequest(targetRegister.getStudent().getId(),
+                targetRegister.getSubjectGroup().getSubject().getId());
     }
 
     private Register findRegisterById(Long registerId) {
         return registerRepository.findById(registerId)
-                .orElseThrow(()-> new NotFoundIdException("Register", "ID",
+                .orElseThrow(() -> new NotFoundIdException("Register", "ID",
                         String.valueOf(registerId)));
     }
 

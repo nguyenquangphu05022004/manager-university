@@ -14,15 +14,8 @@ import org.mapstruct.factory.Mappers;
 public interface TeacherMapper {
     TeacherMapper mapper = Mappers.getMapper(TeacherMapper.class);
 
-    @Mapping(target = "subjects", source = "teacherDTO.subjectDTOS")
     Teacher teacherDTOToEntity(TeacherDTO teacherDTO);
 
-    @Mapping(target = "subjectDTOS", source = "teacher.subjects")
     TeacherDTO teacherToDTO(Teacher teacher);
 
-    @Mapping(target = "subjectGroupDTOS", source = "subject.subjectGroups")
-    SubjectDTO subjectToDTO(Subject subject);
-    Subject subjectDTOToEntity(SubjectDTO subjectDTO);
-
-    SubjectGroupDTO subjectGroupToDTO(SubjectGroup subjectGroup);
 }
