@@ -1,19 +1,26 @@
 package com.example.manageruniversity.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import lombok.Data;
-import lombok.Getter;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "grades")
 @Getter
-@Data
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Grade extends Base{
     @OneToOne
     @JoinColumn(name = "register_id")
     private Register register;
-
+    private float attend;
+    private float midtermTest;
+    private float finalTest;
+    private float practiceTest;
+    @ManyToOne
+    @JoinColumn(name = "component_grade_id")
+    private ComponentGrade componentGrade;
 }

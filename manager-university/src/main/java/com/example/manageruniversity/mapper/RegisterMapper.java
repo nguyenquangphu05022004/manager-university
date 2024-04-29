@@ -12,11 +12,11 @@ public interface RegisterMapper {
     RegisterMapper mapper = Mappers.getMapper(RegisterMapper.class);
 
     @Mapping(target = "studentDTO", source = "register.student")
-    @Mapping(target = "subjectGroupDTO", source = "register.subjectGroup")
-    @Mapping(target = "subjectGroupDTO.subjectDTO", source = "register.subjectGroup.subject")
+    @Mapping(target = "subjectGroup", source = "register.subjectGroup")
+    @Mapping(target = "subjectGroup.subject", source = "register.subjectGroup.subject")
     RegisterDTO registerToDTO(Register register);
 
     @Mapping(target = "student", source = "registerDTO.studentDTO")
-    @Mapping(target = "subjectGroup", source = "registerDTO.subjectGroupDTO")
+    @Mapping(target = "subjectGroup", source = "registerDTO.subjectGroup")
     Register registerDTOToEntity(RegisterDTO registerDTO);
 }

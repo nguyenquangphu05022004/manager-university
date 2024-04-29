@@ -19,9 +19,6 @@ public class Subject extends Base{
     private String subjectName;
     private String subjectCode;
     private Integer credit;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "tuition_id")
-    private Tuition tuition;
     @OneToMany(mappedBy = "subject")
     private List<SubjectGroup> subjectGroups = new ArrayList<>();
     @ManyToMany(mappedBy = "subjects")

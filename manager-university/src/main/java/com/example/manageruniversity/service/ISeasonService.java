@@ -6,5 +6,5 @@ import com.example.manageruniversity.dto.SeasonDTO;
 import java.util.List;
 
 public interface ISeasonService extends IGenericService<SeasonDTO> {
-    List<SeasonDTO> findAllByStudentId(Long studentId);
+    List<SeasonDTO> findAllSeasonExactlyOfStudent(Long studentId);
 }

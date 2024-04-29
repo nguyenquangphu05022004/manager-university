@@ -15,5 +15,6 @@ public interface SeasonMapper {
 
 
     @Mapping(target = "tuition", source = "season.tuition")
+    @Mapping(target = "registers", source = "season.registers")
     SeasonDTO seasonToDTO(Season season);
 }

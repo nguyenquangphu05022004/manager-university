@@ -12,6 +12,8 @@ public interface RegisterRepository extends JpaRepository<Register, Long> {
     List<Register> findAllByStudentId(Long studentId);
     List<Register> findAllByOpenTransaction(boolean transaction);
 
+    List<Register> findAllByStudentIdAndSeasonId(Long studentId, Long seasonId);
+
     //find all list in season specific
     @Query("select " +
             " r " +

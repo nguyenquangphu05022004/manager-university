@@ -13,10 +13,6 @@ public class SubjectDTO extends BaseDTO{
     private String subjectName;
     private String subjectCode;
     private Integer credit;
-    private TuitionDTO tuitionDTO;
     private List<SubjectGroupDTO> subjectGroupDTOS = new ArrayList<>();
     private Set<TestScheduleDTO> testScheduleDTOS = new HashSet<>();
-    public Integer priceOfSubject() {
-        return tuitionDTO.getMoneyPerCredit() * credit;
-    }
 }

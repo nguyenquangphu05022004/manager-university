@@ -13,8 +13,6 @@ import java.util.List;
 @Getter
 public class Tuition extends Base{
     private Integer moneyPerCredit;
-    @OneToMany(mappedBy = "tuition", cascade = CascadeType.ALL)
-    private List<Subject> subjects  = new ArrayList<>();
     @OneToOne
     @JoinColumn(name = "season_Id")
     private Season season;

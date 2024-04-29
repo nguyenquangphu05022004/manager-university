@@ -37,7 +37,7 @@ public class SeasonController {
         return seasonService.records();
     }
     @GetMapping("/seasons/student/{studentId}")
-    public List<SeasonDTO> getListSeasonByStudent(@PathVariable("studentId") Long studentId) {
-        return seasonService.findAllByStudentId(studentId);
+    public List<SeasonDTO> getExactlySeasonOfStudent(@PathVariable("studentId") Long studentId) {
+        return seasonService.findAllSeasonExactlyOfStudent(studentId);
     }
 }

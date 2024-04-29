@@ -22,6 +22,9 @@ public class Register extends Base{
     private Grade grade;
     @OneToMany(mappedBy = "targetRegister")
     private List<Transaction> transactions = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "season_id")
+    private Season season;
     private boolean openTransaction;
 
     @Transient

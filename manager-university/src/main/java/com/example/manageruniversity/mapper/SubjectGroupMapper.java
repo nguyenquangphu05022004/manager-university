@@ -12,8 +12,6 @@ import org.mapstruct.factory.Mappers;
 public interface SubjectGroupMapper {
     SubjectGroupMapper mapper = Mappers.getMapper(SubjectGroupMapper.class);
 
-    @Mapping(target = "subject", source = "subjectGroupDTO.subjectDTO")
     SubjectGroup subjectGroupDTOToEntity(SubjectGroupDTO subjectGroupDTO);
-    @Mapping(target = "subjectDTO", source = "subjectGroup.subject")
     SubjectGroupDTO subjectGroupToDTO(SubjectGroup subjectGroup);
 }

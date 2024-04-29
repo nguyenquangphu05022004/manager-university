@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class SubjectGroupDTO extends BaseDTO{
     private String groupName;
-    private SubjectDTO subjectDTO;
+    private SubjectDTO subject;
     private TeacherDTO teacher;
     private Integer numberOfStudent;
     private List<TimeDTO> times = new ArrayList<>();

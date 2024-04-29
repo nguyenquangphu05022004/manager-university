@@ -30,6 +30,12 @@ public class Season extends Base{
     @OneToMany(mappedBy = "season")
     private List<TestSchedule> testSchedules = new ArrayList<>();
 
+    @OneToMany(mappedBy = "season")
+    private List<MajorRegister> majorRegisters = new ArrayList<>();
+
+    @OneToMany(mappedBy = "season")
+    private List<Register> registers = new ArrayList<>();
+
     private boolean disabled;
 
 }

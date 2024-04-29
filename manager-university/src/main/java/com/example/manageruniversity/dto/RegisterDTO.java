@@ -11,9 +11,10 @@ import java.util.List;
 @Setter
 public class RegisterDTO extends BaseDTO{
     private StudentDTO studentDTO;
-    private SubjectGroupDTO subjectGroupDTO;
+    private SubjectGroupDTO subjectGroup;
     private boolean openTransaction;
-
+    private GradeDTO gradeDTO;
     private List<RegisterDTO> listRegisterRequest = new ArrayList<>();
+
 
 }

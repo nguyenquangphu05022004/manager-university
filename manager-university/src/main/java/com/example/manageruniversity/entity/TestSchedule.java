@@ -15,16 +15,12 @@ import java.util.Set;
 @Data
 public class TestSchedule extends Base{
     @ManyToOne
-    @JoinColumn(name = "room_class_id")
-    private RoomClass roomClass;
-    private Integer numberOfStudent;
-    @ManyToOne
     @JoinColumn(name = "season_id")
     private Season season;
+    @ManyToOne
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
 
-    @ManyToMany
-    @JoinTable(name = "test_schedule_subjects", joinColumns = @JoinColumn(name = "test_schedule_id"),
-    inverseJoinColumns = @JoinColumn(name = "subject_id"))
-    private Set<Subject> subjects = new HashSet<>();
-
+    @OneToMany(mappedBy = "testSchedule")
+    private List<StudentsTestRoom> studentsTestRooms = new ArrayList<>();
 }
