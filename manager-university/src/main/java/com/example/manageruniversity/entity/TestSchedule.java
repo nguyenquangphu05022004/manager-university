@@ -1,26 +1,40 @@
 package com.example.manageruniversity.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
+import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "test_schedules")
 @Getter
-@Data
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class TestSchedule extends Base{
     @ManyToOne
     @JoinColumn(name = "season_id")
     private Season season;
+    private Integer roomNumber;
+    @ManyToOne
+    @JoinColumn(name = "room_class_id")
+    private RoomClass roomClass;
+    private Integer numberOfStudent;
+    private LocalDate startDate;
+    private LocalTime startTime;
+    private LocalTime endTime;
+    @Enumerated(EnumType.STRING)
+    private TestType testType;
+    @ManyToMany
+    @JoinTable(name = "testSchedule_student",
+            joinColumns = @JoinColumn(name = "testSchedule_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id"))
+    private List<Student> students = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "subject_id")
     private Subject subject;
-
-    @OneToMany(mappedBy = "testSchedule")
-    private List<StudentsTestRoom> studentsTestRooms = new ArrayList<>();
 }

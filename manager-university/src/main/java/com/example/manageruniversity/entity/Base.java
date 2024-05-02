@@ -3,6 +3,7 @@ package com.example.manageruniversity.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @Getter
-@Data
+@Setter
 public abstract class Base {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

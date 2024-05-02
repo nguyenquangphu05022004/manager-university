@@ -5,14 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RoomClassDTO extends BaseDTO {
-    private String name;
-    private List<TimeDTO> timeDTOS = new ArrayList<>();
+public class PostNotificationDTO extends BaseDTO {
+    private String title;
+    private String content;
 }

@@ -23,8 +23,6 @@ public class Subject extends Base{
     private List<SubjectGroup> subjectGroups = new ArrayList<>();
     @ManyToMany(mappedBy = "subjects")
     private  List<MajorRegister> majorRegisters = new ArrayList<>();
-    @ManyToMany(mappedBy = "subjects")
-    private Set<TestSchedule> testSchedules = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {

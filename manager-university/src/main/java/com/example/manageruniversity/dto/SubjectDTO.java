@@ -1,18 +1,17 @@
 package com.example.manageruniversity.dto;
 
-import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 @Getter
-@Data
+@Setter
 public class SubjectDTO extends BaseDTO{
     private String subjectName;
     private String subjectCode;
     private Integer credit;
     private List<SubjectGroupDTO> subjectGroupDTOS = new ArrayList<>();
-    private Set<TestScheduleDTO> testScheduleDTOS = new HashSet<>();
 }

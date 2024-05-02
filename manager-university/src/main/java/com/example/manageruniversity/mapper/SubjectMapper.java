@@ -15,7 +15,5 @@ public interface SubjectMapper {
     SubjectMapper mapper = Mappers.getMapper(SubjectMapper.class);
 
     Subject subjectDTOToEntity(SubjectDTO subjectDTO);
-    @Mapping(target = "subjectGroupDTOS", source = "subject.subjectGroups")
     SubjectDTO subjectToDTO(Subject subject);
-
 }

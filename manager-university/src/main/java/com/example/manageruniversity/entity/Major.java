@@ -9,7 +9,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "majors")
-@Getter
 @Data
 public class Major extends Base{
     private String name;

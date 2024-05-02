@@ -12,8 +12,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 @Getter
-@Data
-@ToString
+@Setter
 public class BaseDTO {
     private Long id;
     private LocalDateTime createdDate;

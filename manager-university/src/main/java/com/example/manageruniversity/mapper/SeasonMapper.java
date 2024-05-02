@@ -13,7 +13,6 @@ public interface SeasonMapper {
 
     Season seasonDTOToEntity(SeasonDTO seasonDTO);
 
-
     @Mapping(target = "tuition", source = "season.tuition")
     @Mapping(target = "registers", source = "season.registers")
     SeasonDTO seasonToDTO(Season season);
