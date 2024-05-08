@@ -1,6 +1,8 @@
 package com.example.manageruniversity.mapper;
 
+import com.example.manageruniversity.dto.MajorRegisterDTO;
 import com.example.manageruniversity.dto.SeasonDTO;
+import com.example.manageruniversity.entity.MajorRegister;
 import com.example.manageruniversity.entity.Season;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -13,7 +15,6 @@ public interface SeasonMapper {
 
     Season seasonDTOToEntity(SeasonDTO seasonDTO);
 
-    @Mapping(target = "tuition", source = "season.tuition")
-    @Mapping(target = "registers", source = "season.registers")
+    @Mapping(target = "majorRegisterDTOS", source = "season.majorRegisters")
     SeasonDTO seasonToDTO(Season season);
 }

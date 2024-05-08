@@ -36,7 +36,16 @@ public class MajorRegisterController {
     }
 
     @GetMapping("/majorRegisters/major/{majorId}")
-    public MajorRegisterDTO getByMajorIdAndSeasonDisabledIsFalse(@PathVariable("majorId") Long majorId) {
-        return majorRegisterService.findByMajorIdAndSeasonDisabled(majorId, false);
+    public MajorRegisterDTO getByMajorIdAndSeasonDisabledIsFalse(@PathVariable("majorId") Long majorId, @RequestParam("disabled") boolean disabled) {
+        return majorRegisterService.findByMajorIdAndSeasonDisabled(majorId, disabled);
+    }
+    @GetMapping("/majorRegisters/list/student/{studentId}")
+    public List<MajorRegisterDTO> getListByStudentId(@PathVariable("studentId") Long studentId) {
+        return majorRegisterService.findAllByStudentId(studentId);
+    }
+    @GetMapping("/majorRegisters/student/{studentId}")
+    public MajorRegisterDTO getByStudentIdAndSeasonWithOpenRegister(@PathVariable("studentId") Long studentId,
+                                           @RequestParam("openRegister") boolean openRegister) {
+        return majorRegisterService.findByStudentIdAndSeasonNotDisabledAndOpenRegister(studentId, openRegister);
     }
 }

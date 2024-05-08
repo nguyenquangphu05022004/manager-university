@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 @Table(name = "grades")
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Grade extends Base{

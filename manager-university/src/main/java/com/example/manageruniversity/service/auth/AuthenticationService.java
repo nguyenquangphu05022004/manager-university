@@ -57,11 +57,9 @@ public class AuthenticationService {
         Object person = null;
         if (registerRequest.getRole().equals(Role.STUDENT)) {
             StudentDTO studentDTO = registerRequest.getStudentDTO();
-            studentDTO.setUserId(userId);
             person = studentService.saveOrUpdate(studentDTO);
         } else if (registerRequest.getRole().equals(Role.TEACHER)) {
             TeacherDTO teacherDTO = registerRequest.getTeacherDTO();
-            teacherDTO.setUserId(userId);
             person  = teacherService.saveOrUpdate(teacherDTO);
         }
         return person;

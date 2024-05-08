@@ -12,13 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class SeasonServiceImpl implements ISeasonService {
     private final SeasonRepository seasonRepository;
-    private final RegisterRepository registerRepository;
 
 
     @Override
@@ -46,15 +46,27 @@ public class SeasonServiceImpl implements ISeasonService {
         seasonRepository.deleteById(id);
     }
 
+
     @Override
-    public List<SeasonDTO> findAllSeasonExactlyOfStudent(Long studentId) {
-        List<Season> seasons = seasonRepository.findAll();
-        for(Season season : seasons) {
-            List<Register> registers = registerRepository.findAllByStudentIdAndSeasonId(studentId, season.getId());
-            season.setRegisters(registers);
-        }
-        return seasons.stream().map(season -> {
-            return SeasonMapper.mapper.seasonToDTO(season);
-        }).collect(Collectors.toList());
+    public SeasonDTO findById(Long seasonId) {
+        Season season = seasonRepository.findById(seasonId).orElseThrow();
+        return SeasonMapper.mapper.seasonToDTO(season);
+
+    }
+
+    @Override
+    public List<SeasonDTO> getListSeasonByCoursesId(Long coursesId) {
+        var list = seasonRepository.findAllByCoursesIdAndOrderByIdDesc(coursesId);
+        return list.stream()
+                .map(e -> SeasonMapper.mapper.seasonToDTO(e))
+                .toList();
+    }
+
+    @Override
+    public List<SeasonDTO> getListSeasonByDisabled(boolean disabled) {
+       var list = seasonRepository.findAllByDisabled(disabled);
+        return list.stream()
+                .map(e -> SeasonMapper.mapper.seasonToDTO(e))
+                .toList();
     }
 }

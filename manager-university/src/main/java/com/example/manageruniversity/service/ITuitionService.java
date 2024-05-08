@@ -7,6 +7,6 @@ import com.example.manageruniversity.entity.Tuition;
 import java.util.List;
 
 public interface ITuitionService   {
-    void saveOrUpdate(TuitionDTO tuitionDTO);
+    void initTuition(TuitionDTO tuitionDTO);
     List<TuitionDTO> listTuition();
 }

@@ -12,6 +12,7 @@ import org.mapstruct.factory.Mappers;
 public interface SubjectGroupMapper {
     SubjectGroupMapper mapper = Mappers.getMapper(SubjectGroupMapper.class);
 
+
     SubjectGroup subjectGroupDTOToEntity(SubjectGroupDTO subjectGroupDTO);
     SubjectGroupDTO subjectGroupToDTO(SubjectGroup subjectGroup);
 }

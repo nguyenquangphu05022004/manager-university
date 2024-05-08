@@ -26,8 +26,8 @@ public class RegisterServiceImpl implements IRegisterService {
     @Override
     public RegisterDTO saveOrUpdate(RegisterDTO registerDTO) {
         Register register = RegisterMapper.mapper.registerDTOToEntity(registerDTO);
-        register = registerRepository.save(register);
-        return RegisterMapper.mapper.registerToDTO(register);
+        registerRepository.save(register);
+        return null;
     }
 
     @Override
@@ -39,12 +39,6 @@ public class RegisterServiceImpl implements IRegisterService {
     @Override
     public void delete(Long id) {
         registerRepository.deleteById(id);
-    }
-
-    @Override
-    public List<RegisterDTO> recordsByStudentId(Long studentId) {
-        List<Register> registers = registerRepository.findAllByStudentId(studentId);
-        return convertList(registers);
     }
 
     @Override
@@ -62,8 +56,8 @@ public class RegisterServiceImpl implements IRegisterService {
     }
 
     @Override
-    public List<RegisterDTO> getRegisterByStudentIdAndSeason(Long studentId, boolean seasonIsDisabled) {
-        List<Register> registers = registerRepository.findAll(studentId, seasonIsDisabled);
+    public List<RegisterDTO> getRegisterByStudentIdAndSeasonDisabled(Long studentId, boolean disabled) {
+        List<Register> registers = registerRepository.findAllByStudentIdAndMajorRegisterSeasonDisabled(studentId, disabled);
         return convertList(registers);
     }
 

@@ -15,11 +15,10 @@ public interface StudentMapper {
 
 
     @Mapping(target = "major", source = "dto.majorDTO")
-    @Mapping(target = "user.id", source = "dto.userId")
     Student studentDTOToEntity(StudentDTO dto);
 
     @Mapping(target = "majorDTO", source = "student.major")
-    @Mapping(target = "userId", source = "user.id")
+    @Mapping(target = "coursesDTO", source = "student.courses")
     StudentDTO studentToDTO(Student student);
 
 }

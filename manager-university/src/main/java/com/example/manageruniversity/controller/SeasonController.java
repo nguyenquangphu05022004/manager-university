@@ -3,6 +3,7 @@ package com.example.manageruniversity.controller;
 import com.example.manageruniversity.dto.SeasonDTO;
 import com.example.manageruniversity.service.ISeasonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,8 +37,16 @@ public class SeasonController {
     public List<SeasonDTO> seasonList() {
         return seasonService.records();
     }
-    @GetMapping("/seasons/student/{studentId}")
-    public List<SeasonDTO> getExactlySeasonOfStudent(@PathVariable("studentId") Long studentId) {
-        return seasonService.findAllSeasonExactlyOfStudent(studentId);
+    @GetMapping("/seasons/courses/{coursesId}")
+    public List<SeasonDTO> getListSeasonByCoursesId(@PathVariable("coursesId") Long coursesId) {
+        return seasonService.getListSeasonByCoursesId(coursesId);
+    }
+    @GetMapping("/seasons/search")
+    public List<SeasonDTO> getListByDisabled(@RequestParam("disabled") boolean disabled) {
+        return seasonService.getListSeasonByDisabled(disabled);
+    }
+    @GetMapping("/seasons/{seasonId}")
+    public SeasonDTO getSeasonById(@PathVariable("seasonId") Long seasonId) {
+        return seasonService.findById(seasonId);
     }
 }

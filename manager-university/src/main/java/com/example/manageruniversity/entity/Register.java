@@ -23,8 +23,8 @@ public class Register extends Base{
     @OneToMany(mappedBy = "targetRegister")
     private List<Transaction> transactions = new ArrayList<>();
     @ManyToOne
-    @JoinColumn(name = "season_id")
-    private Season season;
+    @JoinColumn(name = "major_register_id")
+    private MajorRegister majorRegister;
     private boolean openTransaction;
 
     @Transient

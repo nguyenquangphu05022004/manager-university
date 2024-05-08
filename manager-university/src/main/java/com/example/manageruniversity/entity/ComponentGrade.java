@@ -14,7 +14,6 @@ import java.util.List;
 @Table(name = "component_grades")
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ComponentGrade extends Base{

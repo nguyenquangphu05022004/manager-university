@@ -8,20 +8,20 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class GradeDTO {
-    private RegisterDTO register;
-    private double attend;
-    private double midtermTest;
-    private double finalTest;
-    private double practiceTest;
+    private float attend;
+    private float midtermTest;
+    private float finalTest;
+    private float practiceTest;
     private ComponentGradeDTO componentGrade;
 
-    public double getSubjectAverage() {
-        double a = attend * componentGrade.getAttend() * 0.1 +
-                midtermTest * componentGrade.getMidtermTest() * 0.1 +
-                finalTest * componentGrade.getFinalTest() * 0.1 +
-                practiceTest * componentGrade.getPracticeTest() * 0.1;
+    public float getSubjectAverage() {
+        if(componentGrade == null) return 0;
+        float a =  (attend * componentGrade.getAttend() * 0.01f +
+                        midtermTest * componentGrade.getMidtermTest() * 0.01f +
+                        finalTest * componentGrade.getFinalTest() * 0.01f +
+                        practiceTest * componentGrade.getPracticeTest() * 0.01f);
         return a;
     }
+
 }

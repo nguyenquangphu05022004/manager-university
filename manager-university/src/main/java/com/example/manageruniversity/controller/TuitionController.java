@@ -16,14 +16,10 @@ import java.util.List;
 public class TuitionController {
     private final ITuitionService tuitionService;
 
-    @PostMapping
+    @PostMapping("/init")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createTuition(@RequestBody TuitionDTO tuitionDTO) {
-         tuitionService.saveOrUpdate(tuitionDTO);
-    }
-    @GetMapping
-    public List<TuitionDTO> listTuition() {
-        return tuitionService.listTuition();
+    public void initTuition(@RequestBody TuitionDTO tuitionDTO) {
+         tuitionService.initTuition(tuitionDTO);
     }
 
 }

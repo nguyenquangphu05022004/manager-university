@@ -9,5 +9,5 @@ import lombok.Setter;
 @Setter
 public class StudentDTO extends PersonDTO {
     private MajorDTO majorDTO;
-    private Long userId;
+    private CoursesDTO coursesDTO;
 }

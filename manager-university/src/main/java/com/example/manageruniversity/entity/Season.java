@@ -24,17 +24,12 @@ public class Season extends Base{
     @JoinColumn(name = "courses_id")
     private Courses courses;
 
-    @OneToOne(mappedBy = "season")
-    private Tuition tuition;
 
     @OneToMany(mappedBy = "season")
     private List<TestSchedule> testSchedules = new ArrayList<>();
 
     @OneToMany(mappedBy = "season")
     private List<MajorRegister> majorRegisters = new ArrayList<>();
-
-    @OneToMany(mappedBy = "season")
-    private List<Register> registers = new ArrayList<>();
 
     private boolean disabled;
 

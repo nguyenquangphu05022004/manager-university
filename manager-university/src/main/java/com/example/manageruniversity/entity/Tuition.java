@@ -14,6 +14,6 @@ import java.util.List;
 public class Tuition extends Base{
     private Integer moneyPerCredit;
     @OneToOne
-    @JoinColumn(name = "season_Id")
-    private Season season;
+    @JoinColumn(name = "major_register_id")
+    private MajorRegister majorRegister;
 }

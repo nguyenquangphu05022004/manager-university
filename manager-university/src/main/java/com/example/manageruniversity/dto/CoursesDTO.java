@@ -12,4 +12,5 @@ public class CoursesDTO extends BaseDTO {
     private String name;
     private String code;
     private List<SeasonDTO> seasonsDto = new ArrayList<>();
+
 }

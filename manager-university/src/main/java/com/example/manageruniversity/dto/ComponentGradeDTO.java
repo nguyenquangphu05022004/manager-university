@@ -7,9 +7,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ComponentGradeDTO {
+public class ComponentGradeDTO extends BaseDTO{
     private int attend;
     private int midtermTest;
     private int finalTest;
     private int practiceTest;
+
+    public String getDetails() {
+        return attend + " - " + practiceTest + " - " + midtermTest + " - " + finalTest;
+    }
 }

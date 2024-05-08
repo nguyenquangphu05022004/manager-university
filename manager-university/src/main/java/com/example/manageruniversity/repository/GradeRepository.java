@@ -1,4 +1,7 @@
 package com.example.manageruniversity.repository;
 
-public interface GradeRepository {
+import com.example.manageruniversity.entity.Grade;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface GradeRepository extends JpaRepository<Grade, Long>{
 }
