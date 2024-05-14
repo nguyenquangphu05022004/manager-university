@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class StudentDTO extends PersonDTO {
-    private MajorDTO majorDTO;
-    private CoursesDTO coursesDTO;
+    private MajorDTO major;
+    private CoursesDTO courses;
+    private UserDTO user;
 }

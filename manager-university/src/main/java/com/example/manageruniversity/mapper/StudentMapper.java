@@ -14,11 +14,8 @@ public interface StudentMapper {
     StudentMapper mapper = Mappers.getMapper(StudentMapper.class);
 
 
-    @Mapping(target = "major", source = "dto.majorDTO")
     Student studentDTOToEntity(StudentDTO dto);
 
-    @Mapping(target = "majorDTO", source = "student.major")
-    @Mapping(target = "coursesDTO", source = "student.courses")
     StudentDTO studentToDTO(Student student);
 
 }

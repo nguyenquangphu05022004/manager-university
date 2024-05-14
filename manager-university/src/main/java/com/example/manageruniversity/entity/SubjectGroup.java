@@ -28,6 +28,8 @@ public class SubjectGroup extends Base {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
+    private int numberOfStudentCurrent;
+
     @Override
     public boolean equals(Object o) {
         if(o instanceof SubjectGroup) {

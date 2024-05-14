@@ -3,6 +3,7 @@ package com.example.manageruniversity.service.impl;
 import com.example.manageruniversity.dto.MajorRegisterDTO;
 import com.example.manageruniversity.entity.MajorRegister;
 import com.example.manageruniversity.entity.Register;
+import com.example.manageruniversity.entity.Subject;
 import com.example.manageruniversity.exception.NotFoundIdException;
 import com.example.manageruniversity.mapper.MajorRegisterMapper;
 import com.example.manageruniversity.mapper.SeasonMapper;
@@ -13,9 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,13 +25,39 @@ public class MajorRegisterServiceImpl implements IMajorRegisterService {
 
     @Override
     public MajorRegisterDTO saveOrUpdate(MajorRegisterDTO majorRegisterDTO) {
-        MajorRegister majorRegister = null;
-        if(majorRegisterDTO.getId() != null) {
+        MajorRegister majorRegister = majorRegisterRepository
+                .findBySeasonIdAndMajorId(majorRegisterDTO.getSeasonDTO().getId(),
+                majorRegisterDTO.getMajorDTO().getId()).orElseThrow();
+        if(majorRegister != null) {
+            List<Subject> subjects = majorRegister.getSubjects();
+            for(var s : majorRegisterDTO.getSubjectDTOS()) {
+                Subject subject = new Subject(); subject.setId(s.getId());
+                int index = checkSubjectIdIsExistsInList(subjects, s.getId(), 0, subjects.size() - 1);
+                if(index >= 0) {
+                    subjects.add(subject);
+                }
+            }
         } else {
             majorRegister = MajorRegisterMapper.mapper.majorRegisterDTOToEntity(majorRegisterDTO);
         }
         majorRegister = majorRegisterRepository.save(majorRegister);
         return majorRegisterDTO;
+    }
+
+    private int checkSubjectIdIsExistsInList(List<Subject> subjects, Long id, int l, int r) {
+        int x = l;
+        int y = r;
+        while(x < y) {
+            int mid = (x + y) /2;
+            if(subjects.get(mid).getId() > id) {
+                y = mid - 1;
+            } else if(subjects.get(mid).getId() < id) {
+                x = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+        return -(l + r);
     }
 
     @Override

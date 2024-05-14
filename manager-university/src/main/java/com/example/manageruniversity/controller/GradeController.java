@@ -27,7 +27,7 @@ public class GradeController {
     public List<ComponentGradeDTO> getListGradeComponent() {
         return gradeService.getListGradeComponent();
     }
-    @GetMapping("/init")
+    @PostMapping("/init")
     public void initGrade(@RequestParam("majorRegisterId") Long majorRegisterId) {
         gradeService.initGradeByMajorRegisterId(majorRegisterId);
     }

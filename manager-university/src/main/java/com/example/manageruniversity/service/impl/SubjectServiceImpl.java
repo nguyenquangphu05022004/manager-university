@@ -5,6 +5,7 @@ import com.example.manageruniversity.dto.SubjectGroupDTO;
 import com.example.manageruniversity.entity.Subject;
 import com.example.manageruniversity.entity.SubjectGroup;
 import com.example.manageruniversity.entity.Teacher;
+import com.example.manageruniversity.mapper.SubjectGroupMapper;
 import com.example.manageruniversity.mapper.SubjectMapper;
 import com.example.manageruniversity.repository.SubjectRepository;
 import com.example.manageruniversity.service.ISubjectService;
@@ -39,7 +40,16 @@ public class SubjectServiceImpl implements ISubjectService {
     public List<SubjectDTO> records() {
         List<Subject> subjects = subjectRepository.findAll();
         return subjects.stream().map(subject -> {
-            return SubjectMapper.mapper.subjectToDTO(subject);
+            SubjectDTO subjectDTO = SubjectMapper.mapper.subjectToDTO(subject);
+            List<SubjectGroupDTO> subjectGroupDTOS = subject.getSubjectGroups()
+                    .stream()
+                    .map(e -> {
+                        e.setSubject(null);
+                        return SubjectGroupMapper.mapper.subjectGroupToDTO(e);
+                    })
+                    .toList();
+            subjectDTO.setSubjectGroupDTOS(subjectGroupDTOS);
+            return subjectDTO;
         }).collect(Collectors.toList());
     }
 

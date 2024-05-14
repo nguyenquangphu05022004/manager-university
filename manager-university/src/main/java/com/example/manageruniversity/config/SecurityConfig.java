@@ -24,7 +24,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class SecurityConfig {
     private static final String[] WHITE_LIST_URL={
             "/api/v1/auth/**",
-            "/api/v1/notifications/**"
+            "/api/v1/notifications/**",
+            "/api/v1/export/**"
     };
     private  final AuthenticationProvider authenticationProvider;
     private final JwtAuthenticationFilter jwtAuthFilter;

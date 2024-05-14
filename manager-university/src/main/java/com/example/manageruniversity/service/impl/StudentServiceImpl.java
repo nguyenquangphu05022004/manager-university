@@ -47,4 +47,12 @@ public class StudentServiceImpl implements IStudentService {
     public void delete(Long id) {
         studentRepository.deleteById(id);
     }
+
+    @Override
+    public List<StudentDTO> getListStudentBySubjectGroupId(Long subjectGroupId) {
+        List<Student> studentList = studentRepository.findAllBySubjectGroupId(subjectGroupId);
+        return studentList.stream().map(student -> {
+            return StudentMapper.mapper.studentToDTO(student);
+        }).collect(Collectors.toList());
+    }
 }

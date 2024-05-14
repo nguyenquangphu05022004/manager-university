@@ -12,7 +12,6 @@ public class SeasonDTO extends BaseDTO{
     private SemesterDTO semester;
     private SchoolYearDTO schoolYear;
     private CoursesDTO courses;
-    private List<RegisterDTO> registers = new ArrayList<>();
     private boolean disabled;
     private List<MajorRegisterDTO> majorRegisterDTOS = new ArrayList<>();
 

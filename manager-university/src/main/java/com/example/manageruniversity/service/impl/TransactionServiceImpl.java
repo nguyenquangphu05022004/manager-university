@@ -77,6 +77,12 @@ public class TransactionServiceImpl implements ITransactionService {
                 targetRegister.getSubjectGroup().getSubject().getId());
     }
 
+    @Override
+    @Transactional
+    public void deleteByRegisterIdAndStudentId(Long targetRegister, Long studentRequestId) {
+        transactionRepository.deleteByTargetRegisterIdAndStudentId(targetRegister, studentRequestId);
+    }
+
     private Register findRegisterById(Long registerId) {
         return registerRepository.findById(registerId)
                 .orElseThrow(() -> new NotFoundIdException("Register", "ID",

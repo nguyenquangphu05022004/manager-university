@@ -19,7 +19,11 @@ public class TransactionController {
         transactionService.save(targetRegisterId, studentId);
         return ResponseEntity.ok("Success create transaction");
     }
-
+    @DeleteMapping("/transactions")
+    public void deleteTransaction(@RequestParam("targetRegisterId") Long targetRegister,
+                                  @RequestParam("studentRequestId") Long studentRequestId) {
+        transactionService.deleteByRegisterIdAndStudentId(targetRegister, studentRequestId);
+    }
     @PostMapping("/transactions/confirm")
     public ResponseEntity<?> confirmTransaction(@RequestParam("targetRegisterId") Long targetRegisterId,
                                                @RequestParam("requestRegisterId") Long requestRegisterId) {

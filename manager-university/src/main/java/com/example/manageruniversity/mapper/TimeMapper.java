@@ -14,6 +14,6 @@ public interface TimeMapper {
 
     @Mapping(target = "subjectGroup", source = "timeDTO.subjectGroupDTO")
     Time timeDTOToEntity(TimeDTO timeDTO);
-    @Mapping(target = "subjectGroupDTO", source = "time.subjectGroup")
+    @Mapping(target = "roomClassDTO", source = "time.roomClass")
     TimeDTO timeToDTO(Time time);
 }

@@ -2,6 +2,7 @@ package com.example.manageruniversity.service.auth;
 
 import com.example.manageruniversity.dto.StudentDTO;
 import com.example.manageruniversity.dto.TeacherDTO;
+import com.example.manageruniversity.dto.UserDTO;
 import com.example.manageruniversity.dto.auth.AuthenticationRequest;
 import com.example.manageruniversity.dto.auth.AuthenticationResponse;
 import com.example.manageruniversity.dto.auth.RegisterRequest;
@@ -9,6 +10,7 @@ import com.example.manageruniversity.entity.Role;
 import com.example.manageruniversity.entity.auth.Token;
 import com.example.manageruniversity.entity.auth.TokenType;
 import com.example.manageruniversity.entity.auth.User;
+import com.example.manageruniversity.exception.NotFoundIdException;
 import com.example.manageruniversity.mapper.StudentMapper;
 import com.example.manageruniversity.mapper.TeacherMapper;
 import com.example.manageruniversity.repository.auth.TokenRepository;
@@ -49,6 +51,7 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .accessToken(jwt)
                 .person(object)
+                .role(user.getRole())
                 .build();
     }
 
@@ -94,6 +97,7 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .accessToken(jwt)
                 .person(student == null ? teacher : student)
+                .role(user.getRole())
                 .build();
     }
 
@@ -111,5 +115,34 @@ public class AuthenticationService {
             tokenRepository.save(storedToken);
             SecurityContextHolder.clearContext();
         }
+    }
+
+    public UserDTO getInfoUser(String username) {
+        User user = userRepository
+                .findByUsername(username)
+                .orElseThrow(() -> new NotFoundIdException("User", "username", username));
+        UserDTO userDTO = UserDTO.builder()
+                .studentDTO(user.getStudent() != null ? StudentMapper.mapper.studentToDTO(user.getStudent()) : null)
+                .teacherDTO(user.getTeacher() != null ? TeacherMapper.mapper.teacherToDTO(user.getTeacher()) : null)
+                .role(user.getRole())
+                .username(username)
+                .build();
+        return userDTO;
+
+    }
+
+    public void changePassword(String oldPass, String newPass) {
+        User user = userRepository.findByUsername(SecurityContextHolder
+                        .getContext()
+                        .getAuthentication()
+                        .getName())
+                .orElseThrow(() -> new NotFoundIdException("User", "Username", "null"));
+
+        if(passwordEncoder.matches(oldPass, user.getPassword())) {
+            user.setPassword(passwordEncoder.encode(newPass));
+            userRepository.save(user);
+            return;
+        }
+        throw new RuntimeException("OldPassword not match password in database");
     }
 }

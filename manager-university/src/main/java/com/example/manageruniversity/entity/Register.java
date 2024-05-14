@@ -20,7 +20,7 @@ public class Register extends Base{
     private SubjectGroup subjectGroup;
     @OneToOne(mappedBy = "register")
     private Grade grade;
-    @OneToMany(mappedBy = "targetRegister")
+    @OneToMany(mappedBy = "targetRegister", cascade = CascadeType.ALL)
     private List<Transaction> transactions = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "major_register_id")

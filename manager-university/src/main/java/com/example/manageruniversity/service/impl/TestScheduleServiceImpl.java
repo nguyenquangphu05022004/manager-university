@@ -10,6 +10,7 @@ import com.example.manageruniversity.repository.StudentRepository;
 import com.example.manageruniversity.repository.TestScheduleRepository;
 import com.example.manageruniversity.service.ITestScheduleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -26,22 +27,21 @@ public class TestScheduleServiceImpl implements ITestScheduleService {
     @Override
     public void saveOrUpdate(TestScheduleDTO testScheduleDTO) {
         Pageable pageable = PageRequest.of(testScheduleDTO.getRoomNumber() - 1, testScheduleDTO.getNumberOfStudent());
-        List<Student> students = studentRepository
+        Page<Student> studentPage = studentRepository
                 .findAllBySubjectId(testScheduleDTO.getSubject().getId(),
-                        pageable)
-                .getContent();
+                        pageable);
         Optional<TestSchedule> optionalTestSchedule = testScheduleRepository
                 .findBySeasonId(testScheduleDTO
                         .getSeasonDTO()
                         .getId());
         TestSchedule schedule = new TestSchedule();
-        if(optionalTestSchedule.isPresent()) {
-
-        } else {
-            schedule = mapToEntity(testScheduleDTO);
-            schedule.setStudents(students);
-        }
-        testScheduleRepository.save(schedule);
+//        if(optionalTestSchedule.isPresent()) {
+//
+//        } else {
+//            schedule = mapToEntity(testScheduleDTO);
+//            schedule.setStudents(students);
+//        }
+//        testScheduleRepository.save(schedule);
     }
 
     @Override

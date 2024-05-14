@@ -3,6 +3,8 @@ package com.example.manageruniversity.controller;
 import com.example.manageruniversity.dto.RegisterDTO;
 import com.example.manageruniversity.entity.Register;
 import com.example.manageruniversity.service.IRegisterService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,17 +26,19 @@ public class RegisterController {
     @PostMapping("/registers")
     @ResponseStatus(HttpStatus.CREATED)
     public RegisterDTO createRegister(@RequestBody RegisterDTO registerDTO) {
+
         return registerService.saveOrUpdate(registerDTO);
     }
-    @DeleteMapping("/register/{registerId}")
+    @DeleteMapping("/registers/{registerId}")
     public void deleteRegister(@PathVariable("registerId") Long registerId) {
         registerService.delete(registerId);
     }
 
     @GetMapping("/registers/student/{studentId}")
     public List<RegisterDTO> getRegisterListByStudentIdAndSeasonNotDisable(@PathVariable("studentId") Long studentId,
-                                                                           @RequestParam("disabled") boolean disabled) {
-        return registerService.getRegisterByStudentIdAndSeasonDisabled(studentId, disabled);
+                                                                           @RequestParam("disabled") boolean disabled,
+                                                                           HttpServletResponse response) {
+        return registerService.getRegisterByStudentIdAndSeasonDisabled(studentId, disabled, response);
     }
 
     @PutMapping("/registers/transaction/{registerId}")
@@ -48,7 +52,7 @@ public class RegisterController {
         return registerService.recordsByTransactionStatus(transaction);
     }
     @GetMapping("/registers/student/{studentId}/subject/{subjectId}")
-    public List<RegisterDTO> getListRegisterOpenedTransactionBySubjectId(@PathVariable("studentId") Long studentId,
+    public List<RegisterDTO> getListRegisterOpenedTransactionBySubjectIdAndNotOfStudentId(@PathVariable("studentId") Long studentId,
                                                                          @PathVariable("subjectId") Long subjectId) {
         return registerService.findAllRegisterOpenedBySubjectIdAndNotOfStudentId(subjectId, studentId);
     }
