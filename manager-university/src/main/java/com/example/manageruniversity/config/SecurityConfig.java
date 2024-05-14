@@ -25,7 +25,8 @@ public class SecurityConfig {
     private static final String[] WHITE_LIST_URL={
             "/api/v1/auth/**",
             "/api/v1/notifications/**",
-            "/api/v1/export/**"
+            "/api/v1/export/**",
+            "/vnpay-payment"
     };
     private  final AuthenticationProvider authenticationProvider;
     private final JwtAuthenticationFilter jwtAuthFilter;
