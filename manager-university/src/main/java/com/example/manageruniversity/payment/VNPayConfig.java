@@ -1,6 +1,6 @@
 package com.example.manageruniversity.payment;
-
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.Mac;
@@ -16,7 +16,7 @@ public class VNPayConfig {
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     public static String vnp_Returnurl = "/vnpay-payment";
     public static String vnp_TmnCode = "Z39UGFN0";
-    public static String vnp_HashSecret = "8CRJV9CPISGXEXBAL3AW3PL4GDIQL33G";
+    public static String vnp_HashSecret = "T1EOMDB1XG47NI4ANU1SQZ1RJWRNC31D";
     public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
 
     public static String md5(String message) {

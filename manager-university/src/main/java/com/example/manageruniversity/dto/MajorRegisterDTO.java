@@ -14,6 +14,7 @@ public class MajorRegisterDTO extends BaseDTO {
     private TuitionDTO tuitionDTO;
     private List<RegisterDTO> registerDTOS = new ArrayList<>();
     private boolean openRegister;
+    private PaymentResponse paymentOfPerStudentAtCurrentSeason;
     public Integer getTotalCreditOfStudent() {
         var t = 0;
         for(var s : registerDTOS) {

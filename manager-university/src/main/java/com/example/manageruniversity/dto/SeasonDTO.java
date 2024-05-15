@@ -15,6 +15,7 @@ public class SeasonDTO extends BaseDTO{
     private boolean disabled;
     private List<MajorRegisterDTO> majorRegisterDTOS = new ArrayList<>();
 
+
     public String getNameSeason() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Năm học ");

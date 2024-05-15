@@ -29,4 +29,5 @@ public class MajorRegister extends Base{
     @OneToOne(mappedBy = "majorRegister")
     private Tuition tuition;
     private boolean openRegister;
+
 }
