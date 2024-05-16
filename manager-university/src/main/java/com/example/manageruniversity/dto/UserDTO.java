@@ -13,4 +13,5 @@ public class UserDTO extends BaseDTO{
     private Role role;
     private StudentDTO studentDTO;
     private TeacherDTO teacherDTO;
+    private AvatarResponse avatarResponse;
 }

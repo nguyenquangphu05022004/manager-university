@@ -1,5 +1,6 @@
 package com.example.manageruniversity.service.auth;
 
+import com.example.manageruniversity.dto.AvatarResponse;
 import com.example.manageruniversity.dto.StudentDTO;
 import com.example.manageruniversity.dto.TeacherDTO;
 import com.example.manageruniversity.dto.UserDTO;
@@ -98,6 +99,10 @@ public class AuthenticationService {
                 .accessToken(jwt)
                 .person(student == null ? teacher : student)
                 .role(user.getRole())
+                .avatarResponse(AvatarResponse.builder()
+                        .fileName(user.getAvatar() != null ? user.getAvatar().getAvatarName() : null)
+                        .folderStorage(user.getAvatar() != null ? user.getAvatar().getFolderStorage() : null)
+                        .build())
                 .build();
     }
 

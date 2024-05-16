@@ -1,9 +1,6 @@
 package com.example.manageruniversity.entity.auth;
 
-import com.example.manageruniversity.entity.Base;
-import com.example.manageruniversity.entity.Role;
-import com.example.manageruniversity.entity.Student;
-import com.example.manageruniversity.entity.Teacher;
+import com.example.manageruniversity.entity.*;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -37,7 +34,8 @@ public class User extends Base implements UserDetails {
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens = new ArrayList<>();
-
+    @OneToOne(mappedBy = "user")
+    private Avatar avatar;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.asList(new SimpleGrantedAuthority(role.name()));
